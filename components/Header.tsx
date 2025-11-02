@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Link, usePathname } from "expo-router";
-import { Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
+import { Image, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
 
 const navItems = [
   { name: "Home", path: "/", icon: "home-outline" },
@@ -17,32 +17,47 @@ export default function Header() {
   if (!isDesktop) return null; // hide on mobile
 
   return (
-    <View className="flex-row items-center justify-between px-8 py-4 border-b border-gray-200 bg-white">
-      <Text className="text-xl font-bold text-red-500">Wallpaper Studio</Text>
+    <View className="flex-row items-center justify-between px-8 py-[38.5px] border-b border-gray-200 bg-white">
+      {/* Logo section */}
+      <View className="flex-row items-center gap-[3.5px]">
+        <Image
+          source={require("../assets/images/logo.png")}
+          style={{ width: 20, height: 20 }}
+        />
+        <Text className="text-[14px] font-poppins">Wallpaper Studio</Text>
+      </View>
 
-      <View className="flex-row space-x-6">
-        {navItems.map((item) => (
-          <Link key={item.path} href={item.path} asChild>
-            <TouchableOpacity
-              className={`flex-row items-center space-x-1 ${
-                pathname === item.path ? "text-black" : "text-gray-500"
-              }`}
-            >
-              <Ionicons
-                name={item.icon as any}
-                size={20}
-                color={pathname === item.path ? "black" : "gray"}
-              />
-              <Text
-                className={`font-medium ${
-                  pathname === item.path ? "text-black" : "text-gray-600"
-                }`}
+      {/* Navigation links */}
+      <View className="flex-row space-x-4">
+        {navItems.map((item) => {
+          const isActive = pathname === item.path;
+
+          return (
+            <Link key={item.path} href={item.path} asChild>
+              <TouchableOpacity
+                className={`flex-row items-center space-x-1 px-3 py-2 rounded-xl border 
+                  ${
+                    isActive
+                      ? "bg-gray-100 border-gray-300"
+                      : "border-transparent"
+                  }`}
               >
-                {item.name}
-              </Text>
-            </TouchableOpacity>
-          </Link>
-        ))}
+                <Ionicons
+                  name={item.icon as any}
+                  size={20}
+                  color={isActive ? "black" : "gray"}
+                />
+                <Text
+                  className={`font-medium ${
+                    isActive ? "text-black" : "text-gray-500"
+                  }`}
+                >
+                  {item.name}
+                </Text>
+              </TouchableOpacity>
+            </Link>
+          );
+        })}
       </View>
     </View>
   );

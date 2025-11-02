@@ -7,49 +7,39 @@ import {
   Poppins_700Bold,
   useFonts,
 } from "@expo-google-fonts/poppins";
-import { Stack } from "expo-router";
+import { Slot } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
-import {
-  ActivityIndicator,
-  Platform,
-  StatusBar,
-  View,
-} from "react-native";
+import { ActivityIndicator, StatusBar, View } from "react-native";
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import "./global.css";
 
 SplashScreen.preventAutoHideAsync();
 
-// ✅ Create a separate inner layout that uses safe area
 function LayoutContent() {
-  const insets = useSafeAreaInsets();
-
-  const topPadding = insets.top || StatusBar.currentHeight || 0;
-  const bottomPadding =
-    Platform.OS === "android"
-      ? insets.bottom > 0
-        ? insets.bottom
-        : 20 // fallback for navigation bar
-      : insets.bottom;
+  const { top, bottom } = useSafeAreaInsets();
 
   return (
     <View
       className="flex-1 bg-white"
       style={{
-        paddingTop: topPadding,
-        paddingBottom: bottomPadding,
+        paddingTop: top || StatusBar.currentHeight || 0,
+        paddingBottom: bottom || 20,
       }}
     >
       <Header />
       <Sidebar />
-      <Stack screenOptions={{ headerShown: false }} />
+      <Slot />
     </View>
   );
 }
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
+    ClashDisplay_Regular: require("../assets/fonts/ClashDisplay-Regular.otf"),
+    ClashDisplay_Medium: require("../assets/fonts/ClashDisplay-Medium.otf"),
+    ClashDisplay_Semibold: require("../assets/fonts/ClashDisplay-Semibold.otf"),
+    ClashDisplay_Bold: require("../assets/fonts/ClashDisplay-Bold.otf"),
     Poppins_400Regular,
     Poppins_500Medium,
     Poppins_600SemiBold,
@@ -57,21 +47,21 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
-    if (fontsLoaded) {
-      SplashScreen.hideAsync();
-    }
+    const prepare = async () => {
+      if (fontsLoaded) await SplashScreen.hideAsync();
+    };
+    prepare();
   }, [fontsLoaded]);
 
   if (!fontsLoaded) {
     return (
-      <View className="flex-1 items-center justify-center">
+      <View className="flex-1 items-center justify-center bg-white">
         <ActivityIndicator size="large" color="#ef4444" />
       </View>
     );
   }
 
   return (
-    // ✅ Safe area provider wraps the whole app
     <SafeAreaProvider>
       <LayoutContent />
     </SafeAreaProvider>
