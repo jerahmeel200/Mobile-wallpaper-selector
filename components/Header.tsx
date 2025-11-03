@@ -17,7 +17,7 @@ export default function Header() {
   if (!isDesktop) return null; // hide on mobile
 
   return (
-    <View className="flex-row items-center justify-between px-8 py-[38.5px] border-b border-gray-200 bg-white">
+    <View className="flex-row items-center justify-between  px-4 lg:px-[47px]  py-[38.5px] border-b border-gray-300 bg-white ">
       {/* Logo section */}
       <View className="flex-row items-center gap-[3.5px]">
         <Image
