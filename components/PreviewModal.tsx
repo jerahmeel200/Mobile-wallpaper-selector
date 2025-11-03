@@ -1,3 +1,4 @@
+import { Ionicons } from "@expo/vector-icons"; // ✅ Import icon set
 import type { FC } from "react";
 import {
   Image,
@@ -38,41 +39,62 @@ const PreviewModal: FC<PreviewModalProps> = ({
     >
       <View className="items-center mb-6">
         <Image
-          source={item.image}
+          source={require("../assets/images/iphone.png")}
           className="w-64 h-[400px] rounded-3xl"
-          resizeMode="cover"
+          resizeMode="contain"
         />
       </View>
 
-      <Text className="text-xl font-semibold text-gray-800 mb-1">
+      <Text className="text-[32px] font-semibold text-gray-800 mb-[37px]">
         Preview
       </Text>
-      <Text className="text-lg font-medium text-gray-700 mb-3">{item.name}</Text>
 
-      <View className="flex-row flex-wrap mb-4">
-        {item.tags.map((tag) => (
-          <View
-            key={tag}
-            className="px-3 py-1 border border-gray-300 rounded-full mr-2 mb-2"
-          >
-            <Text className="text-xs text-gray-600">{tag}</Text>
-          </View>
-        ))}
-      </View>
+      <Text className="text-[14px] text-[#808080] font-poppins">Name</Text>
+      <Text className="text-[24px]   text-black mb-[30px] font-medium font-poppins">{item.name}</Text>
 
-      <Text className="text-sm text-gray-500 mb-6 leading-relaxed">
-        Discover the pure beauty of “Natural Essence” — your gateway to
-        authentic, nature-inspired experiences. Let this unique collection
-        elevate your senses and connect you with the unrefined essence of
-        nature.
+      <Text className="text-[14px] text-[#808080] font-poppins mb-[4px]">Tags</Text>
+
+      <View className="flex-row flex-wrap gap-[12px] mb-[30px]">
+                 {["Nature", "Ambience", "Flowers"].map((tag) => (
+                   <View key={tag} className="bg-[#BFBFBF33] p-[12px] rounded-[24px]">
+                     <Text className="font-poppins text-[12px] text-black">
+                       {tag}
+                     </Text>
+                   </View>
+                 ))}
+               </View>
+
+      <Text className="text-[14px] text-[#808080] font-poppins">Description</Text>
+      <Text className="text-[14px] text-black mb-6 leading-relaxed font-poppins font-medium">
+        Discover the pure beauty of “Natural Essence” — your gateway to authentic,
+        nature-inspired experiences. Let this unique collection elevate your senses
+        and connect you with the unrefined essence of nature.
       </Text>
 
-      <View className="flex-row space-x-3">
-        <TouchableOpacity className="flex-1 px-4 py-3 border border-gray-300 rounded-full items-center">
-          <Text className="text-gray-700 font-medium">♡ Save to Favorites</Text>
+      <View className="flex-row gap-[16px] items-center mb-[24px]">
+        <Image
+          source={require("../assets/images/upload.png")}
+          style={{ width: 40, height: 40, resizeMode: "contain" }}
+        />
+        <Image
+          source={require("../assets/images/minimize.png")}
+          style={{ width: 40, height: 40, resizeMode: "contain" }}
+        />
+        <Image
+          source={require("../assets/images/settings.png")}
+          style={{ width: 40, height: 40, resizeMode: "contain" }}
+        />
+      </View>
+
+      {/* ❤️ Heart icon button */}
+      <View className="flex-col space-x-3">
+        <TouchableOpacity className="flex-1 flex-row justify-center items-center gap-2 px-4 py-3 border border-gray-300 rounded-full mb-[20px]">
+          <Ionicons name="heart-outline" size={20} color="black" />
+          <Text className="text-gray-700 font-medium font-poppins">Save to Favorites</Text>
         </TouchableOpacity>
+
         <TouchableOpacity className="flex-1 px-4 py-3 bg-amber-500 rounded-full items-center">
-          <Text className="text-white font-medium">Set to Wallpaper</Text>
+          <Text className="text-white font-medium font-poppins">Set to Wallpaper</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -81,20 +103,26 @@ const PreviewModal: FC<PreviewModalProps> = ({
   if (isInline) return content;
 
   return (
-    <Modal visible={visible} animationType="slide" transparent>
-      <View className="flex-1 bg-black/70 justify-center items-center">
-        <View className="w-[92%] h-[90%] bg-white rounded-3xl p-4">
-          <TouchableOpacity
-            onPress={onClose}
-            className="self-end mb-3 p-2 border border-gray-200 rounded-full"
-          >
-            <Text className="text-lg text-gray-600">✕</Text>
-          </TouchableOpacity>
-          {content}
-        </View>
-      </View>
-    </Modal>
+ <Modal visible={visible} animationType="slide" transparent>
+  <View className="flex-1 bg-black/70 justify-center items-center">
+    <View className="w-[92%] h-[90%] bg-white rounded-3xl p-[40px] relative">
+      {/* Close button positioned at the top-right */}
+      <TouchableOpacity
+        onPress={onClose}
+        className="absolute top-4 right-4 z-10"
+      >
+        <Image
+          source={require("../assets/images/close.png")}
+          style={{ width: 36, height: 36, resizeMode: "contain" }}
+        />
+      </TouchableOpacity>
+
+      {content}
+    </View>
+  </View>
+</Modal>
+
   );
 };
 
-export default PreviewModal
+export default PreviewModal;
