@@ -2,7 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { Link, usePathname } from "expo-router";
 import { Image, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
 
-const navItems = [
+const navItems: { name: string; path: "/" | "/browse" | "/favourites" | "/settings"; icon: string; }[] = [
   { name: "Home", path: "/", icon: "home-outline" },
   { name: "Browse", path: "/browse", icon: "grid-outline" },
   { name: "Favourites", path: "/favourites", icon: "heart-outline" },
@@ -17,7 +17,7 @@ export default function Header() {
   if (!isDesktop) return null; // hide on mobile
 
   return (
-    <View className="flex-row items-center justify-between  px-4 lg:px-[47px]  py-[38.5px] border-b border-gray-300 bg-white ">
+    <View className="flex-row items-center justify-between  px-[20px] lg:px-[47px]  py-[38.5px] border-b border-gray-300 bg-white ">
       {/* Logo section */}
       <View className="flex-row items-center gap-[3.5px]">
         <Image

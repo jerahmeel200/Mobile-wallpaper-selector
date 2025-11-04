@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { ImageSourcePropType, View } from "react-native";
 import CategoryCard from "./CategoryCard";
 
 export interface Category {
@@ -6,7 +6,7 @@ export interface Category {
   title: string;
   desc: string;
   wallpapers: number;
-  image: string;
+  image: ImageSourcePropType;
 }
 
 const categories: Category[] = [
@@ -15,44 +15,47 @@ const categories: Category[] = [
     title: "Nature",
     desc: "Mountains, Forest and Landscapes",
     wallpapers: 3,
-    image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+    image: require("@/assets/images/nature.jpg"),
   },
   {
     id: "2",
     title: "Abstract",
     desc: "Modern Geometric and artistic designs",
     wallpapers: 4,
-    image: "https://images.unsplash.com/photo-1503602642458-232111445657",
+    
+    image: require("@/assets/images/abstract.jpg"),
   },
   {
     id: "3",
     title: "Urban",
     desc: "Cities, architecture and street",
     wallpapers: 6,
-    image: "https://images.unsplash.com/photo-1486308510493-aa64833634ef",
+   image: require("@/assets/images/urban.jpg"),
   },
   {
     id: "4",
     title: "Space",
     desc: "Cosmos, planets, and galaxies",
     wallpapers: 3,
-    image: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa",
+    image: require("@/assets/images/space.jpg"),
   },
   {
     id: "5",
     title: "Minimalist",
     desc: "Clean, simple, and elegant",
     wallpapers: 6,
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
+    image: require("@/assets/images/minimalist.jpg"),
   },
   {
     id: "6",
     title: "Animals",
     desc: "Wildlife and nature photography",
     wallpapers: 4,
-    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+    image: require("@/assets/images/animal.jpg"),
   },
 ];
+
+ 
 
 export default function CategoryGrid() {
   return (

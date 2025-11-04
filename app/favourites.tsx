@@ -21,21 +21,20 @@ const wallpapers = [
 const SavedWallpapers = () => {
   return (
     <ScrollView
-      contentContainerStyle={{   paddingBottom: 80 }}
+      contentContainerStyle={{ paddingBottom: 80 }}
       showsVerticalScrollIndicator={false}
-      className=" px-[20px] lg:px-[47px]"
+      className="px-[20px] lg:px-[47px] bg-white"  
     >
       {/* Header */}
-       <View className="mt-[30px] lg:mt-8 mb-[50px]">
-             <GradientText
-               text="Saved Wallpaper"
-               className="text-[24px] lg:text-[60px] font-[ClashDisplay_Bold] "
-             />
-     
-             <Text className="text-[#575757] mt-2 text-[16px] lg:text-[24px] w-[348px] lg:w-[870px] font-normal font-poppins">
-               Your saved wallpapers collection
-             </Text>
-           </View>
+      <View className="mt-[30px] lg:mt-8 mb-[50px]">
+        <GradientText
+          text="Saved Wallpaper"
+          className="text-[24px] lg:text-[60px] font-[ClashDisplay_Bold]"
+        />
+        <Text className="text-[#575757] mt-2 text-[16px] lg:text-[24px] w-[348px] lg:w-[870px] font-normal font-poppins">
+          Your saved wallpapers collection
+        </Text>
+      </View>
 
       {/* Grid Layout */}
       <View className="flex-row flex-wrap justify-between gap-y-6">
@@ -45,8 +44,8 @@ const SavedWallpapers = () => {
             className="relative rounded-2xl overflow-hidden"
             style={{
               width: "48%", // mobile default
-              maxWidth: 200, // limits size on web
-              aspectRatio: 3 / 4, // maintains image proportion
+              maxWidth: 200,
+              aspectRatio: 3 / 4,
             }}
           >
             <Image source={item.image} className="w-full h-full rounded-2xl" resizeMode="cover" />

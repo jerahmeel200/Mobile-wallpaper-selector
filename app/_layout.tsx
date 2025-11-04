@@ -21,10 +21,10 @@ function LayoutContent() {
 
   return (
     <View
-      className="flex-1 bg-white"
+      className="flex-1 bg-gray-200"
       style={{
         paddingTop: top || StatusBar.currentHeight || 0,
-        paddingBottom: bottom || 20,
+       
       }}
     >
       <Header />
