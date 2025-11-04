@@ -1,5 +1,6 @@
 import { Ionicons } from "@expo/vector-icons"; // ✅ Import icon set
 import type { FC } from "react";
+import React from "react";
 import {
   Image,
   Modal,
@@ -9,6 +10,7 @@ import {
   View,
   type ImageSourcePropType,
 } from "react-native";
+import WallpaperSetupModal from "./WallpaperSetupModal";
 
 type Wallpaper = {
   id: number;
@@ -30,6 +32,8 @@ const PreviewModal: FC<PreviewModalProps> = ({
   onClose,
   isInline = false,
 }) => {
+
+  const [showSetup, setShowSetup] = React.useState(false);
   if (!item) return null;
 
   const content = (
@@ -93,9 +97,10 @@ const PreviewModal: FC<PreviewModalProps> = ({
           <Text className="text-gray-700 font-medium font-poppins">Save to Favorites</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity className="flex-1 px-4 py-3 bg-amber-500 rounded-full items-center">
+        <TouchableOpacity className="flex-1 px-4 py-3 bg-amber-500 rounded-full items-center"  onPress={() => setShowSetup(true)}>
           <Text className="text-white font-medium font-poppins">Set to Wallpaper</Text>
         </TouchableOpacity>
+        <WallpaperSetupModal visible={showSetup} onClose={() => setShowSetup(false)} />
       </View>
     </ScrollView>
   );
@@ -116,6 +121,7 @@ const PreviewModal: FC<PreviewModalProps> = ({
           style={{ width: 36, height: 36, resizeMode: "contain" }}
         />
       </TouchableOpacity>
+      
 
       {content}
     </View>
