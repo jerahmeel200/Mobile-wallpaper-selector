@@ -55,7 +55,7 @@ const SavedWallpapers = () => {
             <View className="absolute inset-0 bg-black/30 rounded-2xl" />
 
             {/* Heart icon */}
-            <TouchableOpacity className="absolute top-2 right-2 bg-white/20 p-2 rounded-full">
+            <TouchableOpacity className="absolute top-2 right-2 bg-white p-2 rounded-full">
               <Ionicons name="heart" size={18} color="#ffb703" />
             </TouchableOpacity>
 
