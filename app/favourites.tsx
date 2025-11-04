@@ -1,7 +1,15 @@
 import GradientText from "@/components/GradientText";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  Platform,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 const wallpapers = [
   { id: 1, title: "Nature 1", category: "Nature", image: require("../assets/images/nature1.jpg") },
@@ -20,62 +28,71 @@ const wallpapers = [
 
 const SavedWallpapers = () => {
   return (
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={{
-        paddingBottom: 50, // ✅ Extra space to prevent bottom clipping
-        paddingHorizontal: 20,
-        flexGrow: 1,
-      }}
-      className="bg-white"
-    >
-      {/* Header */}
-      <View className="mt-[30px] lg:mt-8 mb-[40px]">
-        <GradientText
-          text="Saved Wallpaper"
-          className="text-[24px] lg:text-[60px] font-[ClashDisplay_Bold]"
-        />
-        <Text className="text-[#575757] mt-2 text-[16px] lg:text-[24px] w-[348px] lg:w-[870px] font-normal font-poppins">
-          Your saved wallpapers collection
-        </Text>
-      </View>
+    <SafeAreaView className="flex-1 bg-white">
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        className="px-[20px] lg:px-[47px] bg-white"
+        contentContainerStyle={{
+          flexGrow: 1,
+          paddingBottom: Platform.OS === "web" ? 80 : 400, // increased for mobile
+        }}
+      >
+        {/* Header */}
+        <View className="mt-[30px] lg:mt-8 mb-[50px]">
+          <GradientText
+            text="Saved Wallpaper"
+            className="text-[24px] lg:text-[60px] font-[ClashDisplay_Bold]"
+          />
+          <Text className="text-[#575757] mt-2 text-[16px] lg:text-[24px] w-[348px] lg:w-[870px] font-normal font-poppins">
+            Your saved wallpapers collection
+          </Text>
+        </View>
 
-      {/* Grid Layout */}
-      <View className="flex-row flex-wrap justify-between">
-        {wallpapers.map((item) => (
-          <TouchableOpacity
-            key={item.id}
-            className="relative rounded-2xl overflow-hidden mb-4"
-            style={{
-              width: "48%", // two per row on mobile
-              height: 290.71, // ✅ fixed height for all cards
-            }}
-          >
-            <Image
-              source={item.image}
-              className="w-full h-full rounded-2xl"
-              resizeMode="cover"
-            />
+        {/* Grid Layout */}
+        <View className="flex-row flex-wrap justify-between gap-y-6">
+          {wallpapers.map((item) => (
+            <TouchableOpacity
+              key={item.id}
+              className="relative rounded-2xl overflow-hidden"
+              style={{
+                width: "48%",
+                maxWidth: 200,
+                aspectRatio: 3 / 4,
+              }}
+            >
+              <Image
+                source={item.image}
+                className="w-full h-[290px] rounded-2xl"
+                resizeMode="cover"
+              />
 
-            {/* Overlay */}
-            <View className="absolute inset-0 bg-black/30 rounded-2xl" />
+              {/* Overlay */}
+              <View className="absolute inset-0 bg-black/30 rounded-2xl" />
 
-            {/* Heart Icon */}
-            <TouchableOpacity className="absolute top-2 right-2 bg-white p-2 rounded-full">
-              <Ionicons name="heart" size={18} color="#ffb703" />
-            </TouchableOpacity>
+              {/* Heart icon */}
+              <TouchableOpacity className="absolute top-2 right-2 bg-white p-2 rounded-full">
+                <Ionicons name="heart" size={18} color="#ffb703" />
+              </TouchableOpacity>
 
-            {/* Text Info */}
-            <View className="absolute bottom-4 left-3">
-              <Text className="text-white text-[18px] font-poppins">{item.title}</Text>
-              <View className="bg-white/10 px-[10px] py-1 mt-1 rounded-full self-start border border-white/20">
-                <Text className="text-white text-[14px] font-poppins">{item.category}</Text>
+              {/* Text info */}
+              <View className="absolute bottom-4 left-3">
+                <Text className="text-white text-[24px] font-poppins">
+                  {item.title}
+                </Text>
+                <View className="bg-white/10 px-[12px] py-1 mt-1 rounded-full self-start border border-white/20">
+                  <Text className="text-white text-[14px] font-poppins">
+                    {item.category}
+                  </Text>
+                </View>
               </View>
-            </View>
-          </TouchableOpacity>
-        ))}
-      </View>
-    </ScrollView>
+            </TouchableOpacity>
+          ))}
+        </View>
+
+        {/* Bottom Spacer for mobile only */}
+        {Platform.OS !== "web" && <View className="h-[180px]" />}
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
