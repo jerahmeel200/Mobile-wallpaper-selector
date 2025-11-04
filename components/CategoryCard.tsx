@@ -41,7 +41,7 @@ export default function CategoryCard({ category }: Props) {
             <BlurView
               intensity={40}
               tint="dark"
-              className="px-[10px] rounded-lg bg-white/20 border border-white/20 py-[6px] md:py-[8px]"
+              className="px-[10px] rounded-lg bg-white/10 border border-white/20 py-[6px] md:py-[8px]"
             >
               <Text className="text-white text-[12px] md:text-[14px] font-poppins">
                 {category.wallpapers} wallpapers

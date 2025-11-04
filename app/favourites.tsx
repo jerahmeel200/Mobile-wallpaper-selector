@@ -19,15 +19,18 @@ const wallpapers = [
 ];
 
 const SavedWallpapers = () => {
-  // testing
   return (
     <ScrollView
-      contentContainerStyle={{ paddingBottom: 80 }}
       showsVerticalScrollIndicator={false}
-      className="px-[20px] lg:px-[47px] bg-white"  
+      contentContainerStyle={{
+        paddingBottom: 50, // ✅ Extra space to prevent bottom clipping
+        paddingHorizontal: 20,
+        flexGrow: 1,
+      }}
+      className="bg-white"
     >
       {/* Header */}
-      <View className="mt-[30px] lg:mt-8 mb-[50px]">
+      <View className="mt-[30px] lg:mt-8 mb-[40px]">
         <GradientText
           text="Saved Wallpaper"
           className="text-[24px] lg:text-[60px] font-[ClashDisplay_Bold]"
@@ -38,32 +41,35 @@ const SavedWallpapers = () => {
       </View>
 
       {/* Grid Layout */}
-      <View className="flex-row flex-wrap justify-between gap-y-6">
+      <View className="flex-row flex-wrap justify-between">
         {wallpapers.map((item) => (
           <TouchableOpacity
             key={item.id}
-            className="relative rounded-2xl overflow-hidden"
+            className="relative rounded-2xl overflow-hidden mb-4"
             style={{
-              width: "48%", // mobile default
-              maxWidth: 200,
-              aspectRatio: 3 / 4,
+              width: "48%", // two per row on mobile
+              height: 290.71, // ✅ fixed height for all cards
             }}
           >
-            <Image source={item.image} className="w-full h-full rounded-2xl" resizeMode="cover" />
+            <Image
+              source={item.image}
+              className="w-full h-full rounded-2xl"
+              resizeMode="cover"
+            />
 
             {/* Overlay */}
             <View className="absolute inset-0 bg-black/30 rounded-2xl" />
 
-            {/* Heart icon */}
+            {/* Heart Icon */}
             <TouchableOpacity className="absolute top-2 right-2 bg-white p-2 rounded-full">
               <Ionicons name="heart" size={18} color="#ffb703" />
             </TouchableOpacity>
 
-            {/* Text info */}
+            {/* Text Info */}
             <View className="absolute bottom-4 left-3">
-              <Text className="text-white text-lg font-semibold">{item.title}</Text>
-              <View className="bg-black/40 px-3 py-1 mt-1 rounded-full self-start">
-                <Text className="text-white text-xs">{item.category}</Text>
+              <Text className="text-white text-[18px] font-poppins">{item.title}</Text>
+              <View className="bg-white/10 px-[10px] py-1 mt-1 rounded-full self-start border border-white/20">
+                <Text className="text-white text-[14px] font-poppins">{item.category}</Text>
               </View>
             </View>
           </TouchableOpacity>
