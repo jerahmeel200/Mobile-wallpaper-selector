@@ -1,5 +1,6 @@
 import GradientText from "@/components/GradientText";
 import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import React from "react";
 import {
   Image,
@@ -27,6 +28,8 @@ const wallpapers = [
 ];
 
 const SavedWallpapers = () => {
+  const router = useRouter();
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       <ScrollView
@@ -34,7 +37,7 @@ const SavedWallpapers = () => {
         className="px-[20px] lg:px-[47px] bg-white"
         contentContainerStyle={{
           flexGrow: 1,
-          paddingBottom: Platform.OS === "web" ? 80 : 400, // increased for mobile
+          paddingBottom: Platform.OS === "web" ? 80 : 400,
         }}
       >
         {/* Header */}
@@ -53,6 +56,7 @@ const SavedWallpapers = () => {
           {wallpapers.map((item) => (
             <TouchableOpacity
               key={item.id}
+              onPress={() => router.push("/empty")}  
               className="relative rounded-2xl overflow-hidden"
               style={{
                 width: "48%",
