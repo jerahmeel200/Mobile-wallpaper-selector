@@ -15,7 +15,7 @@ import WallpaperSetupModal from "./WallpaperSetupModal";
 type Wallpaper = {
   id: number;
   name: string;
-  tags: string[];
+  tags: string;
   image: ImageSourcePropType;
 };
 

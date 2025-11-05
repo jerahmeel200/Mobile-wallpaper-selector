@@ -5,7 +5,7 @@ import React from "react";
 import {
   Image,
   Platform,
-  SafeAreaView,
+
   ScrollView,
   Text,
   TouchableOpacity,
@@ -31,7 +31,7 @@ const SavedWallpapers = () => {
   const router = useRouter();
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <View className="flex-1 bg-white">
       <ScrollView
         showsVerticalScrollIndicator={false}
         className="px-[20px] lg:px-[47px] bg-white"
@@ -96,7 +96,7 @@ const SavedWallpapers = () => {
         {/* Bottom Spacer for mobile only */}
         {Platform.OS !== "web" && <View className="h-[180px]" />}
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 

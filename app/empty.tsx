@@ -10,7 +10,7 @@ const SavedWallpapersScreen = () => {
     <ScrollView
       contentContainerStyle={{ flexGrow: 1 }}
       showsVerticalScrollIndicator={false}
-      className="px-[40px] bg-white"
+      className=" px-[20px] lg:px-[47px] bg-white"
     >
          {/* Header Section */}
         <View className="mt-[30px] lg:mt-8 mb-[50px]">

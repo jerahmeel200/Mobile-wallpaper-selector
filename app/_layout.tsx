@@ -36,10 +36,10 @@ function LayoutContent() {
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
-    ClashDisplay_Regular: require("../assets/fonts/ClashDisplay-Regular.otf"),
-    ClashDisplay_Medium: require("../assets/fonts/ClashDisplay-Medium.otf"),
-    ClashDisplay_Semibold: require("../assets/fonts/ClashDisplay-Semibold.otf"),
-    ClashDisplay_Bold: require("../assets/fonts/ClashDisplay-Bold.otf"),
+    ClashDisplay_Regular: require("@/assets/fonts/ClashDisplay-Regular.otf"),
+    ClashDisplay_Medium: require("@/assets/fonts/ClashDisplay-Medium.otf"),
+    ClashDisplay_Semibold: require("@/assets/fonts/ClashDisplay-Semibold.otf"),
+    ClashDisplay_Bold: require("@/assets/fonts/ClashDisplay-Bold.otf"),
     Poppins_400Regular,
     Poppins_500Medium,
     Poppins_600SemiBold,

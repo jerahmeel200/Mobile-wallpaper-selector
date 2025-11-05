@@ -9,10 +9,10 @@ module.exports = {
         poppins: ["Poppins_400Regular", "sans-serif"],
          fontFamily: {
         clash: {
-          regular: "ClashDisplay_Regular",
-          medium: "ClashDisplay_Medium",
-          semibold: "ClashDisplay_Semibold",
-          bold: "ClashDisplay_Bold",
+       clash: ["ClashDisplay_Regular"],
+        clashBold: ["ClashDisplay_Bold"],
+        clashMedium: ["ClashDisplay_Medium"],
+
         },
       },
       },

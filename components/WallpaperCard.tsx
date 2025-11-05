@@ -1,3 +1,4 @@
+import { Ionicons } from "@expo/vector-icons";
 import type { FC } from "react";
 import {
   Image,
@@ -10,7 +11,7 @@ import {
 type Wallpaper = {
   id: number;
   name: string;
-  tags: string[];
+  tags: string;
   image: ImageSourcePropType;
 };
 
@@ -21,40 +22,35 @@ type WallpaperCardProps = {
 
 const WallpaperCard: FC<WallpaperCardProps> = ({ data, onPress }) => {
   return (
+    <View className="">
     <TouchableOpacity
       onPress={onPress}
       activeOpacity={0.9}
-      className="relative rounded-3xl overflow-hidden bg-gray-100"
-      style={{ aspectRatio: 0.75 }}
+      className="relative rounded-3xl overflow-hidden bg-gray-100 "
+      style={{ height: 290.71,     }}  
     >
       <Image
         source={data.image}
-        className="absolute inset-0 h-[290.71px] w-[190.18px]"
+        style={{ height: 290.71,   }}  
+        className="rounded-3xl"
         resizeMode="cover"
-      /> 
-
-      {/* Overlay gradient */}
-      <View className="absolute inset-0 " />
+      />
 
       {/* Heart icon */}
-      <View className="absolute top-3 right-3 z-10">
-        <View className="bg-white/90 rounded-full w-8 h-8 items-center justify-center">
-          <Text className="text-base text-gray-700">♡</Text>
-        </View>
-      </View>
+       <TouchableOpacity className="absolute top-2 right-2 bg-white p-2 rounded-full">
+                <Ionicons name="heart" size={18} color="#ffb703" />
+              </TouchableOpacity>
 
       {/* Bottom text */}
-      <View className="absolute bottom-0 left-0 right-0 p-3">
-        <Text className="text-white text-lg font-semibold">{data.name}</Text>
-        <View className="flex-row flex-wrap gap-1 mt-1">
-          {data.tags.map((tag) => (
-            <View key={tag} className="bg-white/30 rounded-full px-2 py-0.5">
-              <Text className="text-xs text-white">{tag}</Text>
-            </View>
-          ))}
+      <View className="absolute bottom-4 left-3">
+        <Text className="text-white text-[24px] font-poppins">{data.name}</Text>
+        <View className="bg-white/10 px-[12px] py-1 mt-1 rounded-full self-start border border-white/20">
+          <Text className="text-white text-[14px] font-poppins">{data.tags}</Text>
         </View>
       </View>
     </TouchableOpacity>
+
+    </View>
   );
 };
 
