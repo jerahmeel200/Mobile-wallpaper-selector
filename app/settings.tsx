@@ -16,7 +16,7 @@ const SettingsScreen = () => {
 
   return (
     <ScrollView
-      className="flex-1 bg-white px-[20px] lg:px-[48.48px] lg:py-[50px]"
+      className="flex-1 bg-white px-[20px] lg:px-[48.48px]  "
       contentContainerStyle={{
         flexGrow: 1,
         paddingBottom: 40, // ensures scroll and bottom spacing
