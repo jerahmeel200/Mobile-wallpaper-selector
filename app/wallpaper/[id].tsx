@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+ 
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
@@ -14,6 +14,7 @@ import {
 import PreviewModal from "@/components/PreviewModal";
 import PreviewSection from "@/components/PreviewSection";
 import WallpaperCard from "@/components/WallpaperCard";
+import { Ionicons } from "@expo/vector-icons";
 
 // ✅ Wallpaper type
 type Wallpaper = {
@@ -176,11 +177,11 @@ const Header = ({ title }: { title: string }) => {
   const textColor = "black"; // darker blue-gray (you can change it)
 
   return (
-    <View className="px-6 py-5">
+    <View className="px-6 pt-[43px] lg:pt-0">
       {/* Back to Categories */}
       <TouchableOpacity
         onPress={() => router.push("/")}
-        className="flex-row items-center mb-3"
+        className="flex-row items-center mb-[50px]"
         activeOpacity={0.7}
       >
         <Ionicons name="arrow-back" size={22} color={textColor} />
@@ -199,7 +200,7 @@ const Header = ({ title }: { title: string }) => {
           style={{
             fontSize,
             color: textColor,
-            fontWeight: "600", // optional: adjust weight
+            
           }}
           className="ClashDisplay_Regular"
         >
@@ -221,4 +222,5 @@ const Header = ({ title }: { title: string }) => {
       </View>
     </View>
   );
-};
+}; 
+ 

@@ -1,5 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
-import { Link, usePathname } from "expo-router";
+import { Link, usePathname, useRouter } from "expo-router";
 import { Image, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
 
 const navItems: { name: string; path: "/" | "/browse" | "/favourites" | "/settings"; icon: string; }[] = [
@@ -10,6 +10,7 @@ const navItems: { name: string; path: "/" | "/browse" | "/favourites" | "/settin
 ];
 
 export default function Header() {
+  const router = useRouter()
   const pathname = usePathname();
   const { width } = useWindowDimensions();
   const isDesktop = width >= 1024;
@@ -19,13 +20,13 @@ export default function Header() {
   return (
     <View className="flex-row items-center justify-between  px-[20px] lg:px-[47px]  py-[38.5px] border-b border-gray-300 bg-white ">
       {/* Logo section */}
-      <View className="flex-row items-center gap-[3.5px]">
+      <TouchableOpacity onPress={()=> router.push("/")} className="flex-row items-center gap-[3.5px]">
         <Image
           source={require("../assets/images/logo.png")}
           style={{ width: 20, height: 20 }}
         />
         <Text className="text-[14px] font-poppins">Wallpaper Studio</Text>
-      </View>
+      </TouchableOpacity>
 
       {/* Navigation links */}
       <View className="flex-row space-x-4">

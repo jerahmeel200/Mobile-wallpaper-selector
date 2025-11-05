@@ -1,4 +1,3 @@
-import { BlurView } from "expo-blur";
 import { useRouter } from "expo-router";
 import { Image, Pressable, Text, View } from "react-native";
 import { Category } from "./CategoryGrid";
@@ -33,20 +32,16 @@ export default function CategoryCard({ category }: Props) {
           <Text className="text-white font-bold text-[20px] md:text-[24px] font-poppins">
             {category.title}
           </Text>
-          <Text className="text-white/80 text-[14px] md:text-[16px] font-poppins">
+          <Text className="mt-2 text-white/80 text-[14px] md:text-[16px] font-poppins">
             {category.desc}
           </Text>
 
-          <View className="mt-2 self-start rounded-[30px] overflow-hidden">
-            <BlurView
-              intensity={40}
-              tint="dark"
-              className="px-[10px] rounded-lg bg-white/10 border border-white/20 py-[6px] md:py-[8px]"
-            >
-              <Text className="text-white text-[12px] md:text-[14px] font-poppins">
-                {category.wallpapers} wallpapers
-              </Text>
-            </BlurView>
+          <View className=" self-start rounded-[30px] overflow-hidden">
+            <View className="bg-white/10 px-[12px] py-1 mt-1 rounded-full self-start border border-white/20">
+                              <Text className="text-white text-[14px] font-poppins">
+                                {category.wallpapers} Wallpapers
+                              </Text>
+                            </View>
           </View>
         </View>
       </View>

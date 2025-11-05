@@ -1,5 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
-import { Link, usePathname } from "expo-router";
+import { Link, usePathname, useRouter } from "expo-router";
 import React, { useRef, useState } from "react";
 import {
   Animated,
@@ -48,12 +48,12 @@ export default function Sidebar() {
   };
 
   if (isDesktop) return null;
-
+const router = useRouter()
   return (
     <>
       {/* Header */}
       <View className="flex-row items-center justify-between bg-white px-[20px] border-b border-gray-200 z-20 py-[38.5px]">
-        <View className="flex-row items-center gap-3">
+        <TouchableOpacity onPress={()=> router.push("/")} className="flex-row items-center gap-[8px]">
           <Image
             source={require("../assets/images/logo.png")}
             style={{ width: 20, height: 20 }}
@@ -61,7 +61,7 @@ export default function Sidebar() {
           <Text className="text-[14px] font-normal font-poppins">
             Wallpaper Studio
           </Text>
-        </View>
+        </TouchableOpacity>
 
         <TouchableOpacity onPress={toggleSidebar}>
           <Ionicons name="menu" size={33} color="black" />

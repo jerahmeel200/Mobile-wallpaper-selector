@@ -1,17 +1,18 @@
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-    Image,
-    ScrollView,
-    Text,
-    TouchableOpacity,
-    View,
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import RightDrawer from "./RightDrawer";
  
 
 const PreviewSection = () => {
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
-
+const router = useRouter()
   return (
     <>
       {/* Main Content */}
@@ -92,7 +93,7 @@ const PreviewSection = () => {
 
         {/* Buttons aligned to right side */}
         <View className="flex-row justify-end gap-[16px] items-center mt-6 px-4 md:px-8">
-          <TouchableOpacity className="rounded-[21px] border border-[#DFDFDF] px-[25.5px] py-[14px] bg-transparent">
+          <TouchableOpacity onPress={()=> router.push("/favourites")} className="rounded-[21px] border border-[#DFDFDF] px-[25.5px] py-[14px] bg-transparent">
             <Text className="text-[14px] font-poppins text-black">
               Save to Favourite
             </Text>
